@@ -1,0 +1,129 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+$primaryColor: #af9a7d;
+$mainWhite: #fff;
+$offWhite: #e0e0e0c2;
+$mainBlack: #222;
+$mainGrey: #ececec;
+$darkGrey: #cfcfcf;
+$mainTransition: all 0.3s linear;
+$mainSpacing: 3px;
+$lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+$darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+
+/* globals */
+body {
+  color: $mainBlack;
+  background: $mainWhite;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.4;
+}
+h1 {
+  font-size: 3em;
+  line-height: 1;
+  margin-bottom: 0.5em;
+}
+h2 {
+  font-size: 2em;
+  margin-bottom: 0.75em;
+}
+h3 {
+  font-size: 1.5em;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+h4 {
+  font-size: 1.2em;
+  line-height: 1.25;
+  margin-bottom: 1.25em;
+}
+h5 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+}
+h6 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+}
+/* end of globals */
+
+/*NavBar*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  padding: 0.75rem 2rem;
+  background: $offWhite;
+  z-index: 1;
+}
+.header__menu {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+.open {
+  display: flex;
+}
+.center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo__img {
+  height: 40px;
+}
+.menu__link {
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .menu-btn {
+    display: none;
+  }
+  .header__menu {
+    display: block;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .menu__link:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+/*end of NavBar*/
+
+/*Hero*/
+.default-hero,
+.rooms-hero {
+  min-height: 100vh;
+  background: url('./img/default-hero.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rooms-hero {
+  background: url('./img/rooms-hero.jpg') center/cover no-repeat;
+  min-height: 60vh;
+}
+
+/*end of Hero*/
+
+/*Banner*/
+.banner {
+  background-color: $mainGrey;
+  padding: 50px;
+}
+
+/*end of Banner*/
