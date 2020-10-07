@@ -20,7 +20,7 @@ function App() {
         <Route path="/rooms">
           <Rooms />
         </Route>
-        <Route path="/rooms/:id">
+        <Route path="/rooms/:type">
           <SingleRoom />
         </Route> 
         <Route>
