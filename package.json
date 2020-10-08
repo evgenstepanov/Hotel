@@ -6,7 +6,7 @@
   "scripts": {
     "start": "set NODE_ENV=production&& npm run built && node src/server/server.js",
     "built": "npx webpack",
-    "dev": "set NODE_ENV=development&& nodemon ./src/server/server.js --watch ./src/server",
+    "dev": "set NODE_ENV=development&& nodemon ./src/server/server.js --watch ./src/server"
   },
   "author": "Evgeny Stepanov <evgenos@list.ru>",
   "license": "ISC",
