@@ -31,9 +31,9 @@ export default function Services() {
   ];
 
   return (
-    <section className='services'>
-      <Title title='Services'></Title>
-      <div className='center-container'>
+    <section className='section services'>
+      <Title title='services'></Title>
+      <div className='services__container center-container'>
         {services.map((item) => {
           return (
             <article key={item.title} className='service'>

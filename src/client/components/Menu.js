@@ -9,12 +9,14 @@ export default function Menu() {
   } = React.useContext(StoreContext);
 
   return (
-    <ul className={'menu header__menu' + (menuIsOpen ? ' open' : '')}>
-      {menu.map((item) => (
-        <Link className='menu__link' key={item.title} to={item.src}>
-          {item.title}
-        </Link>
-      ))}
-    </ul>
+    <div className='menu-container'>
+      <ul className={'menu header__menu' + (menuIsOpen ? ' open' : '')}>
+        {menu.map((item) => (
+          <Link className='menu__link' key={item.title} to={item.src}>
+            {item.title}
+          </Link>
+        ))}
+      </ul>
+    </div>
   );
 }

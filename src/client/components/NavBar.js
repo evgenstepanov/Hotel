@@ -16,15 +16,15 @@ export default function NavBar() {
 
   return (
     <header className='header'>
-      <div className='center'>
+      <div className='header__container center-container'>
         <Link className='logo' to='/'>
           <img className='logo__img' src={logo} alt='logo' />
         </Link>
         <button className='menu-btn header__menu-btn' onClick={handleToggle}>
           <FiMenu className='menu-btn__icon' />
         </button>
+        <Menu />
       </div>
-      <Menu />
     </header>
   );
 }
