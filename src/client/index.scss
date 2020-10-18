@@ -6,12 +6,12 @@
   box-sizing: border-box;
 }
 
-$primaryColor: #aaac32;
+$primaryColor: #1ecec5;
 $mainWhite: #fff;
 $offWhite: #e0e0e0c2;
 $mainBlack: #222;
-$mainGrey: #ecececb2;
-$darkGrey: #2c2c2cd5;
+$mainGrey: #967e7ed2;
+$darkGrey: #2c2c2cc5;
 $mainTransition: all 0.3s linear;
 $mainSpacing: 3px;
 $lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
@@ -22,10 +22,10 @@ html {
   font-size: 62.5%;
 }
 body {
+  font-family: 'Raleway', sans-serif;
   font-size: 1.6rem;
   color: $mainBlack;
   background: $mainWhite;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.4;
 }
 h1 {
@@ -35,32 +35,27 @@ h1 {
 }
 h2 {
   font-size: 2.5rem;
-  margin-bottom: 0.75em;
 }
 h3 {
   font-size: 2rem;
   line-height: 1;
-  margin-bottom: 1em;
 }
 h4 {
   font-size: 1.8rem;
   line-height: 1.25;
-  margin-bottom: 1.25em;
 }
 h5 {
   font-size: 1.6rem;
   font-weight: bold;
-  margin-bottom: 1.5em;
 }
 h6 {
   font-size: 1.6rem;
   font-weight: bold;
-  margin-bottom: 1.5em;
 }
 .btn-primary {
   display: inline-block;
   text-decoration: none;
-  color: $darkGrey;
+  color: $mainBlack;
   font-weight: 900;
   padding: 1rem 2rem;
   background: $primaryColor;
@@ -68,15 +63,13 @@ h6 {
 .center-container {
   display: flex;
   align-items: center;
-  margin: 0 5rem;
+  margin: 0 3rem;
 }
 .section {
   padding: 3rem 0;
 }
 @media (min-width: 768px) {
   .center-container {
-    display: flex;
-    align-items: center;
     margin: 0 15rem;
   }
 }
@@ -89,19 +82,35 @@ h6 {
   top: 0;
   left: 0;
   width: 100%;
-  background: $offWhite;
-  z-index: 1;
+  z-index: 999;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  transition: all 300ms ease-out;
+  background-color: $mainBlack;
+  opacity: 0.7;
+  z-index: -1;
+}
+.header.scrolled::before {
+  height: 100%;
 }
 .header__container {
-  padding: 1.2rem 0;
+  padding: 4rem 0 1.2rem;
+  transition: all 300ms ease;
+}
+.header.scrolled .header__container {
+  padding: 1.2rem 0 1.2rem;
 }
 .header__menu {
   display: none;
   flex-direction: column;
   align-items: center;
-  // position: absolute;
-  // top: 100%;
-  // width: 100%;
+  background: $mainBlack;
 }
 .open {
   display: flex;
@@ -112,6 +121,12 @@ h6 {
   align-items: center;
 }
 .logo {
+  text-decoration: none;
+  font-size: 2.4rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  color: $mainWhite;
+  border: 0.2rem solid $mainWhite;
   margin-right: auto;
 }
 .logo__img {
@@ -122,6 +137,9 @@ h6 {
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
+  padding: 1rem 2rem;
+  color: $mainWhite;
+  font-weight: 600;
 }
 .menu-container {
   position: absolute;
@@ -134,10 +152,14 @@ h6 {
   background: none;
   outline: none;
   cursor: pointer;
+  color: $mainWhite;
 }
 .menu-btn__icon {
   display: block;
   font-size: 3.5rem;
+}
+.color-white {
+  background: $mainWhite;
 }
 
 @media (min-width: 768px) {
@@ -154,6 +176,9 @@ h6 {
     position: static;
     width: auto;
   }
+  .header__menu {
+    background: none;
+  }
 }
 /*end of NavBar*/
 
@@ -165,7 +190,17 @@ h6 {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
+.default-hero::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  z-index: 0;
+}
+
 .rooms-hero {
   background: url('./img/rooms-hero.jpg') center/cover no-repeat;
   min-height: 60vh;
@@ -174,11 +209,13 @@ h6 {
 
 /*Banner*/
 .banner {
-  background-color: $darkGrey;
-  padding: 5rem 14rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem 3rem;
   color: $mainWhite;
   text-transform: capitalize;
   text-align: center;
+  z-index: 1;
+  border: 0.2rem solid white;
 }
 .banner__title {
   text-align: center;
@@ -186,13 +223,18 @@ h6 {
 .banner__subtitle {
   margin-bottom: 20px;
 }
-.banner__title:after {
+.banner__title::after {
   content: '';
   height: 3px;
   width: 100px;
   display: block;
   background: $primaryColor;
   margin: 1.5rem auto 0;
+}
+@media (min-width: 998px) {
+  .banner {
+    padding: 5rem 14rem;
+  }
 }
 /*end of Banner*/
 
@@ -233,6 +275,7 @@ h6 {
 
 /*Title*/
 .section-title {
+  width: 100%;
   text-align: center;
   margin-bottom: 3rem;
 }
@@ -245,22 +288,58 @@ h6 {
   width: 100px;
   display: block;
   background: $primaryColor;
-  margin: 15px auto 0;
+  margin: 0.2rem auto 0;
 }
 /*end of Title*/
 
 /*FeaturedRooms*/
-.featured-rooms__container {
+.featured-rooms {
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin: -1rem;
 }
 .room {
+  position: relative;
   flex-basis: 350px;
-  margin: auto;
+  margin: 1rem;
 }
 .image-room {
+  display: block;
   max-width: 100%;
   height: auto;
 }
-
+.price {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: $mainWhite;
+  background: $darkGrey;
+  text-align: center;
+  padding: 0.6rem 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+.price__title {
+  margin-bottom: 0;
+}
+.price__text {
+  font-size: 1rem;
+}
+.room__link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
 /*end of FeaturedRooms*/
+
+/*Footer*/
+.footer {
+  display: flex;
+  padding: 2rem 0;
+  background: $mainGrey;
+}
+.footer__logo {
+  margin: auto;
+}
+/*end of Footer*/
