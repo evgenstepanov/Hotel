@@ -11,14 +11,16 @@ export default function FeaturedRooms() {
   } = React.useContext(StoreContext);
 
   return (
-    <section className='section featured-rooms'>
+    <section className='section'>
       <Title title='featured rooms' />
-      <div className='center-container featured-rooms__container'>
-        {loading ? (
-          <Loading />
-        ) : (
-          featuredRooms.map((room) => <Room key={room.id} data={room} />)
-        )}
+      <div className='center-container'>
+        <div className='featured-rooms'>
+          {loading ? (
+            <Loading />
+          ) : (
+            featuredRooms.map((room) => <Room key={room.id} data={room} />)
+          )}
+        </div>
       </div>
     </section>
   );
