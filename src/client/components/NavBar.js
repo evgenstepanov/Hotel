@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../img/logo.png';
 import { FiMenu } from 'react-icons/fi';
 import Menu from './Menu';
 import { StoreContext } from '../store';
+import Logo from './Logo';
 
 export default function NavBar() {
   const {
@@ -18,9 +17,7 @@ export default function NavBar() {
   return (
     <header className={`header${offset ? ' scrolled' : ''}`}>
       <div className='header__container center-container'>
-        <Link className='logo' to='/'>
-          The Shelter
-        </Link>
+        <Logo className='header__logo' />
         <button className='menu-btn header__menu-btn' onClick={handleToggle}>
           <FiMenu className='menu-btn__icon' />
         </button>
