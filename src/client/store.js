@@ -21,7 +21,14 @@ export default ({ children }) => {
     setRooms(rooms);
     setSortedRooms(rooms);
     setFeaturedRooms(featuredRooms);
-    setLoading(false);
+    setTimeout(() => setLoading(false), 2500);
+  }, []);
+
+  const [offset, setOffset] = useState(false);
+  useEffect(() => {
+    window.onscroll = () => {
+      setOffset(window.pageYOffset !== 0);
+    };
   }, []);
 
   const formatData = () => {
@@ -42,6 +49,7 @@ export default ({ children }) => {
     sortedRooms: [sortedRooms, setSortedRooms],
     featuredRooms: [featuredRooms, setFeaturedRooms],
     loading: [loading, setLoading],
+    offset: [offset, setOffset],
   };
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
