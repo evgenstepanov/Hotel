@@ -42,6 +42,12 @@ export default ({ children }) => {
     return tempItems;
   };
 
+  const getRoom = (slug) => {
+    let tempRooms = [...rooms];
+    const room = tempRooms.find((room) => room.slug === slug);
+    return room;
+  };
+
   const store = {
     menu: [menu, setMenu],
     menuIsOpen: [menuIsOpen, setMenuIsOpen],
@@ -50,6 +56,7 @@ export default ({ children }) => {
     featuredRooms: [featuredRooms, setFeaturedRooms],
     loading: [loading, setLoading],
     offset: [offset, setOffset],
+    getRoom,
   };
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
