@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Hero from '../Hero';
+import StyledHero from '../StyledHero';
 import Banner from '../Banner';
 import { StoreContext } from '../../store';
+import RoomInfo from '../RoomInfo';
 
 export default function SingleRoom() {
   const {
@@ -17,36 +19,32 @@ export default function SingleRoom() {
     setSingleRoom(room);
   }, [rooms]);
 
-  if (singleRoom) {
-    const {
-      name,
-      description,
-      capacity,
-      size,
-      price,
-      extras,
-      breakfast,
-      pets,
-      images,
-    } = singleRoom;
-  }
-  return (
+  singleRoom ? (
+    <>
+      <StyledHero image={images[0]}>
+        <Banner title={`${singleRoom.name} room`}>
+          <Link className='btn-primary' to='/rooms'>
+            back to rooms
+          </Link>
+        </Banner>
+      </StyledHero>
+      <section className='room-info'>
+        <RoomInfo singleRoom={singleRoom} />
+      </section>
+    </>
+  ) : (
     <>
       <Hero hero='rooms-hero'>
-        <Banner title={!singleRoom ? 'Error' : singleRoom.name}>
+        <Banner title='Sorry, no such room'>
           <Link className='btn-primary' to='/rooms'>
             back to rooms
           </Link>
         </Banner>
       </Hero>
-      {!singleRoom ? (
-        <div className='error-info'>
-          <h1 className='error-infp__title'>Sorry, there is not such room</h1>
-          <p>please, try another request</p>
-        </div>
-      ) : (
-        <div className='room-info'>ROOM_INFO</div>
-      )}
+      <section className='error-info'>
+        <h1 className='error-infp__title'>Sorry, there is not such room</h1>
+        <p>please, try another request</p>
+      </section>
     </>
   );
 }
