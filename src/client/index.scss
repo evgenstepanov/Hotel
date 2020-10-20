@@ -19,6 +19,11 @@ $lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
 $darkShadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
 
 /* globals */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 html {
   font-size: 62.5%;
 }
@@ -210,7 +215,6 @@ h6 {
   position: absolute;
   z-index: 0;
 }
-
 .rooms-hero {
   background: url('./img/rooms-hero.jpg') center/cover no-repeat;
   min-height: 60vh;
@@ -380,3 +384,19 @@ h6 {
   margin: auto;
 }
 /*end of Footer*/
+
+/*Rooms*/
+.rooms-section {
+  flex-grow: 1;
+}
+/*end of Rooms*/
+
+/*SinglePage*/
+.error-info,
+.room-info {
+  text-align: center;
+  padding: 5rem;
+  flex-grow: 1;
+}
+
+/*end of SinglePage*/
