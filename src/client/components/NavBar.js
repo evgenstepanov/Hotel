@@ -15,7 +15,7 @@ export default function NavBar() {
   };
 
   return (
-    <header className={`header${offset ? ' scrolled' : ''}`}>
+    <nav className={`header${offset ? ' scrolled' : ''}`}>
       <div className='header__container center-container'>
         <Logo className='header__logo' />
         <button className='menu-btn header__menu-btn' onClick={handleToggle}>
@@ -23,6 +23,6 @@ export default function NavBar() {
         </button>
         <Menu />
       </div>
-    </header>
+    </nav>
   );
 }
