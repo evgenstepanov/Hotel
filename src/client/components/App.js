@@ -20,11 +20,11 @@ function App() {
           <Route exact path='/'>
             <Home />
           </Route>
-          <Route path='/rooms'>
-            <Rooms />
-          </Route>
-          <Route path='/rooms/:type'>
+          <Route exact path='/rooms/:slug'>
             <SingleRoom />
+          </Route>
+          <Route exact path='/rooms'>
+            <Rooms />
           </Route>
           <Route>
             <NotFound />
