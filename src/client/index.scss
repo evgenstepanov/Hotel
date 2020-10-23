@@ -13,7 +13,7 @@ $mainBlack: #222;
 $BlackOpacity: rgb(46, 46, 46);
 $mainGrey: #a8a8a8d2;
 $darkGrey: #2c2c2cc5;
-$mainTransition: all 0.4s ease-out;
+$mainTransition: all 0.5s ease-out;
 $mainSpacing: 3px;
 $lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
 $darkShadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
@@ -315,8 +315,8 @@ h6 {
 }
 .room {
   position: relative;
-  flex-basis: 350px;
   margin: 1rem;
+  flex-basis: 350px;
 }
 .image-room {
   display: block;
@@ -394,9 +394,104 @@ h6 {
 /*SinglePage*/
 .error-info,
 .room-info {
-  text-align: center;
-  padding: 5rem;
   flex-grow: 1;
+  flex-direction: column;
+  padding: 5rem 0;
+}
+.room-info__images {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  margin: -1rem;
+}
+.room-info__image-container {
+  flex-basis: 350px;
+  margin: 1rem;
+}
+.room-info__img {
+  display: block;
+  max-width: 100%;
+}
+.room-info__title {
+  text-transform: capitalize;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.room-info__title--left {
+  text-align: left;
+}
+.description-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+}
+.description__text {
+  text-align: justify;
+}
+.info__item {
+  height: 2em;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 932px) {
+  .description {
+    flex: 5;
+  }
+  .info {
+    margin-right: 1rem;
+    flex: 2;
+  }
+  .description-container {
+    padding: 2rem 0;
+    flex-direction: row;
+  }
 }
 
 /*end of SinglePage*/
+
+// .full-size-bg {
+//   position: absolute;
+//   display: flex;
+//   padding: 0;
+//   top: 50%;
+//   left: 50%;
+//   height: 0;
+//   background: rgba(0, 0, 0, 0.815);
+//   z-index: 999;
+//   transition: $mainTransition;
+// }
+// .full-size-bg.opened {
+//   height: 100vh;
+//   width: 100%;
+//   padding: 3rem 5rem;
+//   transform: translate(-50%, -50%);
+// }
+// .full-size-pic {
+//   width: 0;
+//   margin: auto;
+// }
+// .full-size-bg.opened .full-size-pic {
+//   width: 100%;
+// }
+
+.full-size-bg {
+  position: absolute;
+  display: flex;
+  padding: 3rem 5rem;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.815);
+  z-index: 999;
+  transition: $mainTransition;
+  opacity: 0;
+}
+.full-size-bg.opened {
+  opacity: 1;
+}
+.full-size-pic {
+  width: 100%;
+  margin: auto;
+}
