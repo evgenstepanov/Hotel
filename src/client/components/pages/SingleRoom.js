@@ -19,20 +19,24 @@ export default function SingleRoom() {
     setSingleRoom(room);
   }, [rooms]);
 
-  singleRoom ? (
-    <>
-      <StyledHero image={images[0]}>
-        <Banner title={`${singleRoom.name} room`}>
-          <Link className='btn-primary' to='/rooms'>
-            back to rooms
-          </Link>
-        </Banner>
-      </StyledHero>
-      <section className='room-info'>
-        <RoomInfo singleRoom={singleRoom} />
-      </section>
-    </>
-  ) : (
+  if (singleRoom) {
+    const { name, images } = singleRoom;
+    return (
+      <>
+        <StyledHero image={images[0]}>
+          <Banner title={`${name} room`}>
+            <Link className='btn-primary' to='/rooms'>
+              back to rooms
+            </Link>
+          </Banner>
+        </StyledHero>
+        <section className='room-info center-container'>
+          <RoomInfo singleRoom={singleRoom} />
+        </section>
+      </>
+    );
+  }
+  return (
     <>
       <Hero hero='rooms-hero'>
         <Banner title='Sorry, no such room'>
