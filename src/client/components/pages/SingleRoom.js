@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Hero from '../Hero';
 import StyledHero from '../StyledHero';
@@ -14,7 +14,7 @@ export default function SingleRoom() {
   let { slug } = useParams();
   const [singleRoom, setSingleRoom] = useState();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let room = getRoom(slug);
     setSingleRoom(room);
   }, [rooms]);
