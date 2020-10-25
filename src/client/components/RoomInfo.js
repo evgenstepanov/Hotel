@@ -1,32 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
+import RoomPics from './RoomPics';
 
 export default function RoomInfo({ singleRoom }) {
-  const [popup, setPopup] = useState({
-    open: false,
-    src: '',
-    alt: '',
-  });
-  const [popupClassName, setPopupClassName] = useState('');
-
-  const isFirstRun = useRef(true);
-  useEffect(() => {
-    if (isFirstRun.current) {
-      isFirstRun.current = false;
-      return;
-    }
-    setPopupClassName(popupClassName ? '' : 'opened');
-  }, [popup]);
-
-  const showFullSizePic = (src, name) => {
-    setPopup({ open: true, src: src, alt: name });
-  };
-
-  const removeFullSizePic = (e) => {
-    setPopup({ open: false, src: '', alt: '' });
-  };
-
   const {
-    name,
     description,
     capacity,
     size,
@@ -36,22 +12,11 @@ export default function RoomInfo({ singleRoom }) {
     pets,
     images,
   } = singleRoom;
-  let [, ...restImages] = images;
+  const [, ...restImages] = images;
 
   return (
     <>
-      <article className='room-info__images'>
-        {restImages.map((src, index) => (
-          <div key={index} className='room-info__image-container'>
-            <img
-              className='room-info__img'
-              src={src}
-              alt={name}
-              onClick={() => showFullSizePic(src, name)}
-            />
-          </div>
-        ))}
-      </article>
+      <RoomPics images={restImages} />
       <div className='description-container'>
         <article className='info'>
           <h3 className='room-info__title room-info__title--left'>info</h3>
@@ -83,15 +48,6 @@ export default function RoomInfo({ singleRoom }) {
           ))}
         </ul>
       </article>
-      {popup.open === true ? (
-        <div
-          style={{ top: window.pageYOffset }}
-          className={'full-size-bg ' + popupClassName}
-          onClick={removeFullSizePic}
-        >
-          <img className='full-size-pic' src={popup.src} alt={popup.name} />
-        </div>
-      ) : null}
     </>
   );
 }
