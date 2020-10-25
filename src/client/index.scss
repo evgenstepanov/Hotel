@@ -476,7 +476,7 @@ h6 {
 // }
 
 .full-size-bg {
-  position: absolute;
+  position: fixed;
   display: flex;
   padding: 3rem 5rem;
   top: 0;
@@ -493,5 +493,5 @@ h6 {
 }
 .full-size-pic {
   width: 100%;
-  margin: auto;
+  object-fit: contain;
 }
