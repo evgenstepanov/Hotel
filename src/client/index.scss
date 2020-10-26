@@ -8,7 +8,7 @@
 
 $primaryColor: #ca9283;
 $mainWhite: #fff;
-$offWhite: #e0e0e0c2;
+$offWhite: #69e9dec2;
 $mainBlack: #222;
 $BlackOpacity: rgb(46, 46, 46);
 $mainGrey: #a8a8a8d2;
@@ -81,6 +81,7 @@ h6 {
 }
 .section {
   padding: 3rem 0;
+  flex-grow: 1;
 }
 @media (min-width: 768px) {
   .center-container {
@@ -307,21 +308,27 @@ h6 {
 /*end of Title*/
 
 /*FeaturedRooms*/
-.featured-rooms {
+.rooms-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   margin: -1rem;
 }
 .room {
-  position: relative;
   margin: 1rem;
   flex-basis: 350px;
+  box-shadow: $darkShadow;
+}
+.room__name {
+  padding: 1rem 3rem;
+  background: $mainGrey;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 700;
 }
 .image-room {
   display: block;
   max-width: 100%;
-  height: auto;
 }
 .price {
   position: absolute;
@@ -347,7 +354,7 @@ h6 {
   transform: translate(-115%, -50%);
 }
 .image-container {
-  box-shadow: $darkShadow;
+  position: relative;
 }
 .image-container::before {
   content: '';
@@ -364,6 +371,7 @@ h6 {
   opacity: 1;
 }
 .loading {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -384,12 +392,6 @@ h6 {
   margin: auto;
 }
 /*end of Footer*/
-
-/*Rooms*/
-.rooms-section {
-  flex-grow: 1;
-}
-/*end of Rooms*/
 
 /*SinglePage*/
 .error-info,
