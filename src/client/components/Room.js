@@ -5,7 +5,6 @@ import defaultImg from '../img/room-1.jpeg';
 export default function Room({ data }) {
   const { name, slug, images, price } = data;
 
-  
   return (
     <article className='room'>
       <div className='image-container'>
@@ -18,6 +17,7 @@ export default function Room({ data }) {
           {name}
         </Link>
       </div>
+      <div className='room__name'>{name}</div>
     </article>
   );
 }
