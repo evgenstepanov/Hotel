@@ -5,6 +5,7 @@ import StyledHero from '../StyledHero';
 import Banner from '../Banner';
 import { StoreContext } from '../../store';
 import RoomInfo from '../RoomInfo';
+import ScrollToTop from '../ScrollToTop';
 
 export default function SingleRoom() {
   const {
@@ -23,6 +24,7 @@ export default function SingleRoom() {
     const { name, images } = singleRoom;
     return (
       <>
+        <ScrollToTop />
         <StyledHero image={images[0]}>
           <Banner title={`${name} room`}>
             <Link className='btn-primary' to='/rooms'>
