@@ -4,7 +4,7 @@ import RoomList from './RoomList';
 
 export default function FeaturedRooms({ type }) {
   return (
-    <section className='section'>
+    <section className='section center-container center-container--column'>
       <Title title='featured rooms' />
       <RoomList type='featured' />
     </section>

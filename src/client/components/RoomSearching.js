@@ -5,7 +5,7 @@ import Title from './Title';
 
 export default function RoomSearching() {
   return (
-    <section className='section'>
+    <section className='section center-container center-container--column'>
       <Title title='Search room' />
       <RoomFilter />
       <RoomList type='sorted' />
