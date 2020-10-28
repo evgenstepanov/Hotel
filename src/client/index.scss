@@ -79,6 +79,10 @@ h6 {
   align-items: center;
   margin: 0 3rem;
 }
+.center-container--column {
+  flex-direction: column;
+  justify-content: start;
+}
 .section {
   padding: 3rem 0;
   flex-grow: 1;
