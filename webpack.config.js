@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: process.env.NODE_ENV == 'production' ? 'production' : 'development',
@@ -83,5 +84,6 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: './public/index.html',
     }),
+    new Dotenv(),
   ],
 };
