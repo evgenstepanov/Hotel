@@ -4,8 +4,8 @@
   "description": "",
   "private": "true",
   "scripts": {
-    "start": "set NODE_ENV=production&& npm run build && node src/server/server.js",
-    "build": "npx webpack",
+    "build": "set NODE_ENV=production&& npm run webpack && node src/server/server.js",
+    "webpack": "npx webpack",
     "dev": "set NODE_ENV=development&& nodemon ./src/server/server.js --watch ./src/server"
   },
   "author": "Evgeny Stepanov <evgenos@list.ru>",
@@ -29,14 +29,10 @@
   },
   "dependencies": {
     "@hot-loader/react-dom": "^16.13.0",
-    "axios": "^0.19.2",
     "contentful": "^7.14.8",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
     "dotenv-webpack": "^5.0.0",
     "express": "^4.17.1",
-    "mongoose": "^5.10.3",
-    "multer": "^1.4.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",
