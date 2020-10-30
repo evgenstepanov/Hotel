@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import items from './data';
+import React, { useState, useEffect } from 'react';
+import Client from './Contentful';
 
 export const StoreContext = React.createContext(null);
 export default ({ children }) => {
@@ -24,16 +24,28 @@ export default ({ children }) => {
     pets: false,
   });
 
+  const getData = async () => {
+    try {
+      let response = await Client.getEntries({
+        content_type: 'hotelReact',
+        order: '-fields.price',
+      });
+      let rooms = formatData(response.items);
+      let featuredRooms = rooms.filter(room => room.featured === true);
+      let maxPrice = Math.max(...rooms.map(item => item.price));
+      let maxSize = Math.max(...rooms.map(item => item.size));
+      setFilter({ ...filter, price: maxPrice, maxSize, maxPrice });
+      setRooms(rooms);
+      setSortedRooms(rooms);
+      setFeaturedRooms(featuredRooms);
+      setTimeout(() => setLoading(false), 2500);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    let rooms = formatData(items);
-    let featuredRooms = rooms.filter(room => room.featured === true);
-    let maxPrice = Math.max(...rooms.map(item => item.price));
-    let maxSize = Math.max(...rooms.map(item => item.size));
-    setFilter({ ...filter, price: maxPrice, maxSize, maxPrice });
-    setRooms(rooms);
-    setSortedRooms(rooms);
-    setFeaturedRooms(featuredRooms);
-    setTimeout(() => setLoading(false), 2500);
+    getData();
   }, []);
 
   const [offset, setOffset] = useState(false);
@@ -62,7 +74,7 @@ export default ({ children }) => {
   const handleChange = e => {
     const target = e.target;
     const name = target.name;
-    const value = e.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     setFilter({ ...filter, [name]: value });
   };
 
@@ -71,23 +83,27 @@ export default ({ children }) => {
   }, [filter]);
 
   const filterRooms = () => {
-    const {
-      type,
-      capacity,
-      price,
-      minPrice,
-      maxPrice,
-      minSize,
-      maxSize,
-      breakfast,
-      pets,
-    } = filter;
+    const { type, capacity, price, minSize, maxSize, breakfast, pets } = filter;
     let tempRooms = [...rooms];
 
     if (type !== 'all') tempRooms = tempRooms.filter(i => i.type === type);
 
     if (+capacity !== 1) {
       tempRooms = tempRooms.filter(i => i.capacity >= capacity);
+    }
+
+    tempRooms = tempRooms.filter(room => room.price <= price);
+
+    tempRooms = tempRooms.filter(
+      room => room.size >= minSize && room.size <= maxSize
+    );
+
+    if (breakfast) {
+      tempRooms = tempRooms.filter(room => room.breakfast === true);
+    }
+
+    if (pets) {
+      tempRooms = tempRooms.filter(room => room.pets === true);
     }
 
     setSortedRooms(tempRooms);
