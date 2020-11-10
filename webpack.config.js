@@ -3,12 +3,13 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const { NetlifyPlugin } = require('netlify-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV == 'production' ? 'production' : 'development',
   entry:
     process.env.NODE_ENV == 'production'
-      ? './src/client/index.js'
+      ? { index: ['./src/client'] }
       : {
           index: [
             'webpack-hot-middleware/client',
@@ -86,6 +87,15 @@ module.exports = {
     }),
     new Dotenv({
       systemvars: true,
+    }),
+    new NetlifyPlugin({
+      redirects: [
+        {
+          from: '/*',
+          to: '/index.html',
+          status: 200,
+        },
+      ],
     }),
   ],
 };
