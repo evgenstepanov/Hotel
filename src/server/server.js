@@ -12,7 +12,10 @@ app.use('/images', express.static(path.join(__dirname, '../client/img')));
 app.use(express.static(__dirname + '../../public'));
 
 if (process.env.NODE_ENV === 'production') {
-  app.use('/', express.static(path.join(__dirname, '../../dist')));
+  app.use(express.static(path.join(__dirname, '../../dist')));
+  app.get('/*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../../dist', 'index.html'));
+  });
   app.listen(PORT, () => {
     console.log(`Listening port: ${PORT}`);
   });
