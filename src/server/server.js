@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 } else if (process.env.NODE_ENV === 'development') {
   const webpack = require('webpack');
-  const config = require(path.join(__dirname, '../../webpack.prod'));
+  const config = require(path.join(__dirname, '../../webpack.dev'));
   const compiler = webpack(config);
   app.use(
     require('webpack-dev-middleware')(compiler, {
