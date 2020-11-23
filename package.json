@@ -5,8 +5,8 @@
   "private": "true",
   "scripts": {
     "build": "webpack --open --config webpack.prod.js && node src/server/server.js",
-    "prod": "set NODE_ENV=production&& webpack --open --config webpack.prod.js && node ./src/server/server.js",
-    "dev": "set NODE_ENV=development&& webpack --open --config webpack.dev.js && nodemon ./src/server/server.js --watch ./src/server"
+    "prod": "cross-env NODE_ENV=production&& webpack --open --config webpack.prod.js && node ./src/server/server.js",
+    "dev": "cross-env NODE_ENV=development&& webpack --open --config webpack.dev.js && nodemon ./src/server/server.js --watch ./src/server"
   },
   "author": "Evgeny Stepanov <evgenos@list.ru>",
   "license": "ISC",
@@ -15,6 +15,7 @@
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
     "css-loader": "^4.2.2",
     "dotenv-webpack": "^5.1.0",
     "file-loader": "^6.1.0",
