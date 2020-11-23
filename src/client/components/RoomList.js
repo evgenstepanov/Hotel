@@ -13,12 +13,20 @@ export default function RoomList({ type }) {
   const rooms = type === 'sorted' ? sortedRooms : featuredRooms;
 
   return (
-    <div className='rooms-container'>
-      {loading ? (
-        <Loading />
+    <>
+      {rooms.length ? (
+        <div className='rooms-container'>
+          {loading ? (
+            <Loading />
+          ) : (
+            rooms.map(room => <Room key={room.id} data={room} />)
+          )}
+        </div>
       ) : (
-        rooms.map(room => <Room key={room.id} data={room} />)
+        <h3 className='rooms-container_error'>
+          Sorry, there is not such room
+        </h3>
       )}
-    </div>
+    </>
   );
 }
