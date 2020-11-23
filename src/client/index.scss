@@ -8,14 +8,11 @@
 
 $primaryColor: #ca9283;
 $mainWhite: #fff;
-$offWhite: #69e9dec2;
 $mainBlack: #222;
 $BlackOpacity: rgb(46, 46, 46);
 $mainGrey: #a8a8a8d2;
 $darkGrey: #2c2c2cc5;
 $mainTransition: all 0.5s ease-out;
-$mainSpacing: 3px;
-$lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
 $darkShadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
 
 /* globals */
@@ -66,8 +63,11 @@ h6 {
   border: 0.2rem solid $primaryColor;
   text-transform: capitalize;
   font-weight: 700;
+  font-size: 1.6rem;
   background: $primaryColor;
   transition: $mainTransition;
+  cursor: pointer;
+  outline: none;
 }
 .btn-primary:hover {
   background: none;
@@ -311,12 +311,15 @@ h6 {
 }
 /*end of Title*/
 
-/*FeaturedRooms*/
+/*RoomList*/
 .rooms-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   margin: -1rem;
+}
+.rooms-container_error {
+  padding: 2rem 0;
 }
 .room {
   margin: 1rem;
@@ -384,7 +387,7 @@ h6 {
   width: 10rem;
   margin-bottom: 1.5rem;
 }
-/*end of FeaturedRooms*/
+/*end of RoomList*/
 
 /*Footer*/
 .footer {
@@ -456,31 +459,6 @@ h6 {
 
 /*end of SinglePage*/
 
-// .full-size-bg {
-//   position: absolute;
-//   display: flex;
-//   padding: 0;
-//   top: 50%;
-//   left: 50%;
-//   height: 0;
-//   background: rgba(0, 0, 0, 0.815);
-//   z-index: 999;
-//   transition: $mainTransition;
-// }
-// .full-size-bg.opened {
-//   height: 100vh;
-//   width: 100%;
-//   padding: 3rem 5rem;
-//   transform: translate(-50%, -50%);
-// }
-// .full-size-pic {
-//   width: 0;
-//   margin: auto;
-// }
-// .full-size-bg.opened .full-size-pic {
-//   width: 100%;
-// }
-
 .full-size-bg {
   position: fixed;
   display: flex;
@@ -501,3 +479,60 @@ h6 {
   width: 100%;
   object-fit: contain;
 }
+
+/* RoomFilter */
+.filter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.filter-container__row {
+  flex-direction: column;
+  align-items: center;
+}
+.filter-container__row:not(:last-child) {
+  margin-bottom: 2rem;
+}
+.filter__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.filter__label_inline {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.section__filter {
+  margin-bottom: 2rem;
+}
+.input-size {
+  width: 5rem;
+}
+.filter__label:not(:last-child) {
+  margin-right: 0;
+}
+.filter-container__title-size {
+  margin-right: 0.5rem;
+}
+.filter-container__title-checkbox {
+  margin-left: 0.5rem;
+}
+@media (min-width: 768px) {
+  .filter-container__row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .filter__label {
+    margin-bottom: 0;
+  }
+  .filter__label:not(:last-child) {
+    margin-right: 2rem;
+  }
+}
+
+/* end of RoomFilter*/
