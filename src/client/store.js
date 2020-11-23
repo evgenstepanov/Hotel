@@ -8,6 +8,10 @@ export default ({ children }) => {
     { title: 'Rooms', src: '/rooms' },
   ]);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const handleToggleMenu = () => {
+    setMenuIsOpen(!menuIsOpen);
+  };
+
   const [rooms, setRooms] = useState([]);
   const [sortedRooms, setSortedRooms] = useState([]);
   const [featuredRooms, setFeaturedRooms] = useState([]);
@@ -38,7 +42,7 @@ export default ({ children }) => {
       setRooms(rooms);
       setSortedRooms(rooms);
       setFeaturedRooms(featuredRooms);
-      setTimeout(() => setLoading(false), 2500);
+      setTimeout(() => setLoading(false), 500);
     } catch (error) {
       console.log(error);
     }
@@ -78,11 +82,9 @@ export default ({ children }) => {
     setFilter({ ...filter, [name]: value });
   };
 
-  useEffect(() => {
-    filterRooms();
-  }, [filter]);
+  const filterRooms = e => {
+    e.preventDefault();
 
-  const filterRooms = () => {
     const { type, capacity, price, minSize, maxSize, breakfast, pets } = filter;
     let tempRooms = [...rooms];
 
@@ -110,7 +112,7 @@ export default ({ children }) => {
   };
 
   const getUnqueValue = (items, value) => {
-    return [...new Set(items.map(i => i[value]))];
+    return [...new Set(items.map(i => i[value]))].sort((a, b) => a - b);
   };
 
   const store = {
@@ -125,6 +127,8 @@ export default ({ children }) => {
     getRoom,
     handleChange,
     getUnqueValue,
+    filterRooms,
+    handleToggleMenu,
   };
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
