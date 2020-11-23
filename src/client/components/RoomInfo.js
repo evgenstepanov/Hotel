@@ -18,6 +18,10 @@ export default function RoomInfo({ singleRoom }) {
     <>
       <RoomPics images={restImages} />
       <div className='description-container'>
+        <article className='description'>
+          <h3 className='room-info__title'>details</h3>
+          <p className='description__text'>{description}</p>
+        </article>
         <article className='info'>
           <h3 className='room-info__title room-info__title--left'>info</h3>
           <p className='info__item'>Price : ${price}</p>
@@ -32,10 +36,6 @@ export default function RoomInfo({ singleRoom }) {
             {pets ? 'Pets allowed' : 'No pets allowed'}
           </p>
           <p className='info__item'>{breakfast && 'Free breakfast included'}</p>
-        </article>
-        <article className='description'>
-          <h3 className='room-info__title'>details</h3>
-          <p className='description__text'>{description}</p>
         </article>
       </div>
       <article className='extras'>

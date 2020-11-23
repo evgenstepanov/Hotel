@@ -432,10 +432,19 @@ h6 {
 .description-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 2rem 0;
+}
+.description {
+  margin: 0 0 2rem 0;
 }
 .description__text {
   text-align: justify;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .info__item {
   height: 2em;
@@ -446,12 +455,13 @@ h6 {
 @media (min-width: 932px) {
   .description {
     flex: 5;
+    margin: 0 3rem 0 0;
   }
   .info {
-    margin-right: 1rem;
-    flex: 2;
+    flex: 3;
   }
   .description-container {
+    width: 70%;
     padding: 2rem 0;
     flex-direction: row;
   }
