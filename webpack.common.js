@@ -1,53 +1,45 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const { NetlifyPlugin } = require('netlify-webpack-plugin');
 
 module.exports = {
-  mode: process.env.NODE_ENV == 'production' ? 'production' : 'development',
-  entry:
-    process.env.NODE_ENV == 'production'
-      ? { index: ['./src/client'] }
-      : {
-          index: [
-            'webpack-hot-middleware/client',
-            'react-hot-loader/patch',
-            './src/client',
-          ],
+  devtool: 'cheap-module-source-map',
+  stats: {
+    all: false,
+    timings: true,
+    cached: true,
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'async',
+      minSize: 30000,
+      maxSize: 400000,
+      minChunks: 3,
+      maxAsyncRequests: 6,
+      maxInitialRequests: 4,
+      automaticNameDelimiter: '~',
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
         },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+  },
   output: {
     publicPath: '/',
     path: path.join(__dirname, '/dist'),
     filename: '[name].js',
   },
-  resolve: {
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
-    extensions: ['.js', '.jsx'],
-  },
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './public',
-    hot: true,
-  },
   module: {
     rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-react'],
-              plugins: ['react-hot-loader/babel'],
-            },
-          },
-        ],
-      },
       {
         test: /\.(png|jpe?g|gif|svg|webp)$/,
         use: [
@@ -81,7 +73,6 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       template: './public/index.html',
     }),
