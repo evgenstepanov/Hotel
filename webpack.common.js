@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-const { NetlifyPlugin } = require('netlify-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -83,15 +82,6 @@ module.exports = {
     }),
     new Dotenv({
       systemvars: true,
-    }),
-    new NetlifyPlugin({
-      redirects: [
-        {
-          from: '/*',
-          to: '/index.html',
-          status: 200,
-        },
-      ],
-    }),
+    })
   ],
 };
