@@ -6,19 +6,19 @@ import Logo from './Logo';
 
 export default function NavBar() {
   const {
-    menuIsOpen: [menuIsOpen, setMenuIsOpen],
+    menuIsOpen: [menuIsOpen],
     offset: [offset],
+    handleToggleMenu,
   } = React.useContext(StoreContext);
 
-  const handleToggle = () => {
-    setMenuIsOpen(!menuIsOpen);
-  };
-
   return (
-    <nav className={`header${offset ? ' scrolled' : ''}`}>
+    <nav className={`header${offset || menuIsOpen ? ' scrolled' : ''}`}>
       <div className='header__container center-container'>
         <Logo className='header__logo' />
-        <button className='menu-btn header__menu-btn' onClick={handleToggle}>
+        <button
+          className='menu-btn header__menu-btn'
+          onClick={handleToggleMenu}
+        >
           <FiMenu className='menu-btn__icon' />
         </button>
         <Menu />
